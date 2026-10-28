@@ -1,5 +1,13 @@
 # go-googlesql
 
+> **DoiT fork** (`github.com/doitintl/go-googlesql`). Same GoogleSQL revision
+> and API as upstream, plus `(*AnalyzerOptions).SetDefaultTimeZoneName` and
+> `DefaultTimeZoneName` (`analyzer_options_doit.go`), with the engine imported
+> as `github.com/doitintl/googlesqlwasm2go`. Consume it with
+> `replace github.com/goccy/go-googlesql => github.com/doitintl/go-googlesql <tag>`.
+> How the generated files are produced, and how to redo it on the next
+> upstream release: [REGENERATION.md](REGENERATION.md).
+
 [![CI](https://github.com/goccy/go-googlesql/actions/workflows/ci.yml/badge.svg)](https://github.com/goccy/go-googlesql/actions/workflows/ci.yml)
 [![Go Reference](https://pkg.go.dev/badge/github.com/goccy/go-googlesql.svg)](https://pkg.go.dev/github.com/goccy/go-googlesql)
 

@@ -1,2 +1,2 @@
-github.com/goccy/googlesqlwasm2go v0.2.0 h1:M+CIX22sDsCI7US0Lk2SVuJBDemlPnb+35b7v6y8YtA=
-github.com/goccy/googlesqlwasm2go v0.2.0/go.mod h1:tseRDWO0lzEmGYZG9lGqymtexVhg6QNrZLJih4fOQs8=
+github.com/doitintl/googlesqlwasm2go v0.2.0-doit.1 h1:s11iMp6EY07Our5ZlW2M5CPBCGPolECkortRcuQR4rc=
+github.com/doitintl/googlesqlwasm2go v0.2.0-doit.1/go.mod h1:Szz0Y4U7vyPyO2qstGa3HXSoudMn6KZ8x6VnxxbINNk=
