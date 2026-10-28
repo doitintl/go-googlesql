@@ -7,26 +7,24 @@ BRIDGE_FILE      := googlesql.go
 RELEASE_URL       = https://github.com/$(GOOGLESQL_WASM_REPO)/releases/download/$(GOOGLESQL_WASM_VERSION)
 ATTESTATION_API   = https://api.github.com/repos/$(GOOGLESQL_WASM_REPO)/attestations
 
-.PHONY: googlesql download verify test
+.PHONY: googlesql verify download-upstream verify-upstream test
 
-## googlesql: refresh the wasm2go bridge from the upstream release
-## and verify its GitHub artifact attestation. Default to running
-## this whenever GOOGLESQL_WASM_VERSION bumps.
-googlesql: download verify
+## googlesql: in the DoiT fork the bridge is not downloaded from a goccy
+## release; it is regenerated with the pipeline in REGENERATION.md, which
+## also refreshes googlesql.go.sha256. The upstream download/attestation
+## targets are kept below for reference only.
+googlesql:
+	@echo "doitintl/go-googlesql: regenerate googlesql.go with the pipeline in REGENERATION.md" >&2; exit 2
 
-## download: fetch the wasm2go-runtime bridge from the upstream
-## release and drop it in place at $(BRIDGE_FILE). The release
-## publishes it as $(BRIDGE_ASSET); the rename is purely cosmetic
-## (gh attestation verify matches by content digest).
-download:
+## verify: confirm googlesql.go is the file the regeneration recorded.
+verify:
+	shasum -a 256 -c googlesql.go.sha256
+
+## download-upstream / verify-upstream: goccy's release flow, unchanged.
+download-upstream:
 	curl -fSL --proto '=https' --tlsv1.2 -o $(BRIDGE_FILE) $(RELEASE_URL)/$(BRIDGE_ASSET)
 
-## verify: confirm $(BRIDGE_FILE) carries a valid GitHub artifact
-## attestation signed by the upstream build.yml workflow. The
-## attestation bundle is fetched anonymously from the public
-## attestation API and verified offline via
-## `gh attestation verify --bundle`. No GH access token is required.
-verify:
+verify-upstream:
 	@set -eu; \
 	tmpdir=$$(mktemp -d); \
 	bundle=$$tmpdir/bundle.jsonl; \

@@ -10,11 +10,11 @@ permissions:
 
 jobs:
   verify:
-    name: Verify googlesql.go attestation
+    name: Verify googlesql.go checksum
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify bridge file (release attestation)
+      - name: Verify bridge file against googlesql.go.sha256
         run: make verify
 
   test:
